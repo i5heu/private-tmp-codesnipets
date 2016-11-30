@@ -1,0 +1,338 @@
+<!--
+TODO: FOCUS umranndung für "GO TO" abschalten und als erstatz bei focus andere huntergrundfarbe.
+
+- schrift auf corier new bauen
+
+
+http://ned.im/noty/#/about
+
+STAT BOX - fliest bei referer aus - mobil anpassen
+
+-->
+
+
+
+
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Content Edit Test</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+
+<style>
+
+
+
+/*-- Header and childs*/
+header {
+  --header-height:40px;
+  --headspace-height:16px;
+  width:100%;
+  position: fixed;
+  top:0;
+  left:0;}
+
+#header1 { /*CONTAINER*/
+  font-size:16px;
+  line-height:var(--header-height);
+  display:flex;
+  flex-flow:row;
+  height:var(--header-height);
+  background-color:#1E90FF;
+  font-family:arial;
+  width:100;
+  padding:0;
+  margin:0; 
+  display:flex;}
+
+#clickscroll {
+  padding: 0 10px 0 8px; 
+  margin-right:10px;
+  height:100%;
+  color:#fff;
+  font-weight:bold;}
+
+#goto_form {
+ display:flex;
+ margin:0 auto 0 0;
+ padding:0;} 
+
+.go {
+  height:100%;
+  padding:0 15px;
+  margin:0 auto 0 0;
+  border:0;
+  background-color:#004b94;
+  color:#fafafa;}
+
+#header1 input {
+  font-size:1em;
+  height:100%;
+  padding:0;
+  margin:0;
+  border:0;
+  background-color:#165da2;
+  color:#fafafa;}
+
+#afterGO {
+  display:flex;
+  width:auto;
+ }
+
+header a{
+  background:black;
+  padding:0 5px 0 5px;
+  color:#fff;
+  margin:0 3px 0 3px;
+  text-decoration:none;
+  
+}
+
+
+header ul {
+ list-style-type: none;
+ display:flex;
+ margin:0 9px 0 5px;
+ padding:0;
+ overflow:hidden;
+ color:#fff;
+ font-weight:bold;}
+@media screen and (max-width: 800px) { header ul{visibility:hidden; display:none;}}
+header li {display:inline; margin-left:6px;}
+#menue li a{text-decoration:none; color:#fff; background:inherit;}
+
+
+/*Notifications and CHILDS*/
+
+.notificationspace {
+display:none;/*   -----  TEST  ------*/
+  width:100vw;
+  background:#1c70c1;
+  color:#111;
+  font-size:var(--headspace-height);
+  font-weight:bold;
+  padding:3px 5px 3px 10px;
+  border-left:4px solid #000;
+  line-height:var(--headspace-height);
+  transition-duration: 0.3s;}
+
+.NSsuccess{background:green;}
+
+.NSwarning{background:yellow;}
+
+.NSnotification{background:blue;}
+
+.NSalert{background:red;}
+
+
+/* headspace and childs*/
+.headspace {
+  width:100vw;
+  background-color:#efefef;
+  color:#111;
+  font-size:var(--headspace-height);
+  font-weight:bold;
+  padding:3px 5px 3px 10px;
+  border-left:4px solid #000;
+  line-height:var(--headspace-height);
+  transition-duration: 0.3s;}
+
+#e-namespaceClick:hover {color:blue;}  
+#e-tageditClick {cursor:pointer;}
+
+#e-namespaceClick {
+  color:#555;
+  text-decoration:none;
+  cursor:pointer;}
+  
+input#e-tags {
+  height:auto;
+  padding:4px;
+  font-size:1.2em;
+  font-family: Courier;
+  max-width:900px;
+  width:calc(100% - 10px);
+  border:1px solid black;
+  word-wrap: break-word;}
+
+</style>
+
+<script>
+//CALIBRATING SPACER FOR HEADER
+function resizeHeader(){
+ var header = $("header").height();
+ document.getElementById("spacer").style.height = header + "px";
+}
+
+//CALIBRATING SPACER FOR HEADER on pageload
+window.onload = function () {
+ resizeHeader();
+}
+
+
+//GO to SEARCH
+function GO() {
+  document.getElementById("goto_form").style.visibility = "visible";
+  document.getElementById("goto_form").style.display = "flex";
+  document.getElementById("goto_form").style.opacity= "1";
+  document.getElementById("go_button").style.visibility = "hidden";
+  document.getElementById("go_button").style.display = "none";
+  
+
+  if (screen.width < 600) {
+    document.getElementById("afterGO").style.visibility = "hidden";
+    document.getElementById("afterGO").style.display = "none";
+  }
+
+  document.getElementById("goto_input").focus();
+  document.getElementById("goto_input").select();
+
+}
+
+
+</script>
+</head>
+<body>
+<header>
+<div id="header1"><span id="clickscroll"  onclick="logoclick(); style="cursor:pointer;">!Wiki</span> 
+
+
+
+<button class="go" id="go_button" onclick="GO()">GO</button><!--type="submit"-->
+<form class="goto" id="goto_form" action="" method="get" style="visibility: hidden; display:none; opacity:0; transition:opacity 500ms;">
+<input id="goto_input" name="goto"  placeholder="Go To" value="">
+<button class="go" type="submit">GO</button>
+</form>
+
+<div id="afterGO">
+
+ <a class="b_edit" href="/it">EDIT</a>
+ <a class="b_edit" href="dat">FOO</a>
+ <a class="b_edit" href="/dat">BAR</a>
+
+
+
+
+ <ul id="menue">
+  <li><a href="/about">About</a></li>
+  <li><a href="/benutzen">WikiBenutzen</a></li>
+  <li><a href="latest">Latest</a></li>
+  <li><a href="/info">Info</a></li>
+  <li><a href="/abo">Abo</a></li>
+ </ul>
+
+</div>
+
+
+</div>
+<div id="main"></div>
+
+<div class="notificationspace NSsuccess">
+    <span>success</span>
+</div>
+
+<div class="notificationspace NSwarning">
+    <span>WARNING</span>
+</div>
+<div class="notificationspace NSnotification">
+    <span>Notification</span>
+</div>
+<div class="notificationspace NSalert">
+    <span>OMG SOMTHING WENT WRONG/</span>
+</div>
+
+<div class="headspace">
+    <span id="e-namespaceClick">:N-space/</span>
+    <span id="e-tageditClick">L-Click Tags (Dies ist ein langer Title)</span>
+
+</div>
+</header>
+<div id="spacer" style="height:40px;"></div>
+
+
+
+
+
+<div id="test" style="max-width:600px;";>
+
+<script>
+
+function testshow(){
+ var elems = document.getElementsByClassName('notificationspace');
+ for (var i=0;i<2;i+=1){
+    elems[i].style.display = 'block';
+ }
+  resizeHeader();
+}
+
+
+function testshow2(){
+ var elems = document.getElementsByClassName('notificationspace');
+ for (var i=2;i<elems.length;i+=1){
+    elems[i].style.display = 'block';
+ }
+  resizeHeader();
+}
+
+</script>
+
+<button onclick="testshow()">SHOW-NOTIFICATION 1-2</button>
+<button onclick="testshow2()">SHOW-NOTIFICATION 2-4</button>
+
+
+<h1>Lorem ipsum</h1>
+
+<p>dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure <a href="/">reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<em>Note: At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</em>
+
+<h2>Ut wisi enim ad minim veniam</h2>
+
+<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam <strong>nonumy eirmod tempor invidunt ut labore et</strong> dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+</p>
+
+<h3>Stet clita kasd gubergren, no sea</h3>
+
+<ol>
+<li>Consetetur sadipscing elitr</li>
+<li>Lorem ipsum dolor sit amet.</li>
+<li>At accusam aliquyam diam</li>
+<li>At vero eos et accusam</li>
+</ol>
+
+<h3><a id="At vero eos et accusam et justo duo dolores et ea rebum."></a>At vero eos et accusam et justo duo dolores et ea rebum.</h3>
+
+<ul>
+<li>Consetetur sadipscing elitr</li>
+<li>Lorem ipsum dolor sit amet.</li>
+<li>At accusam aliquyam diam</li>
+<li>At vero eos et accusam</li>
+</ul>
+
+<p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
+
+
+
+<blockquote>
+Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+</blockquote>
+
+<p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et <a href="accusam">accusam</a> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
+
+<hr>
+<p> Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+
+
+
+
+</div>
+</body>
+</html>
