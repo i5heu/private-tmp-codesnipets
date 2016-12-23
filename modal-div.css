@@ -1,4 +1,9 @@
+
 .modaldiv { 
-  dispaly:block;
-  position:static;
-  z-index:99999;}
+  display:block;
+  position:fixed;
+  z-index:99999;
+  top:0px;
+  height:100%;
+  width:100%;
+  background:#fff;}
