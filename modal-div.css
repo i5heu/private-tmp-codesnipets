@@ -1,0 +1,4 @@
+.modaldiv { 
+  dispaly:block;
+  position:static;
+  z-index:99999;}
